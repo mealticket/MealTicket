@@ -1,0 +1,43 @@
+Spec: FOODOs 
+
+Overview: 
+1. Provide a meal plan for one week 
+
+includes: 
+    a. meal name 
+        1. Two-three word name 
+        2. Image 
+    b. list of ingredients 
+        1. name 
+        2. location to purchase nearby (googlemaps api) 
+        3. price on Amazon 
+    c. amount of each ingredient 
+        1. in user’s native units of measurement 
+    d. price per unit of ingredient 
+        1. native currency 
+        2. compare prices nearby 
+        3. search Amazon 
+    e. price per meal 
+        1. total c + d 
+    f. price per week 
+        1. e * 7 
+    g. predicted yearly cost 
+        1. f * 52 
+    h. suggest meals based on eating habits 
+        1. choose theme 
+        2. suggest restaurants nearby with similar food 
+
+GUI 
+1. Bootcamp skin similar to IBT 
+
+extras 
+1. Ability to add new meals 
+2. extract meals from food websites 
+3. Compare prices of different ingredients (brand/generic) 
+4. Connect to grocery delivery products 
+5. Set dietary goals & achieve awards/badges - gameify 
+6. Connect to FB & Google+ to share good meals 
+7. Plan meals with friends - send meal invites 
+#################################################################
+
+
