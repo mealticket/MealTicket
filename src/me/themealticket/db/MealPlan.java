@@ -1,4 +1,5 @@
-package me.themealticket;
+package me.themealticket.db;
+
 
 public class MealPlan {
 

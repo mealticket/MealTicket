@@ -40,4 +40,44 @@ extras
 7. Plan meals with friends - send meal invites 
 #################################################################
 
+MTEnt.java
+   CRUD
+
+MealPlan.java
+    mealPlanID
+    meals
+    mealPlanName
+
+MealTicketServlet
+
+MealTime.java
+    breakfast
+    lunch
+    dinner
+    snack
+
+MTSchedule.java
+    Meals
+
+    MTScheduleMeal
+        mealOfTheDay
+        dayOfWeek
+        mealTime
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

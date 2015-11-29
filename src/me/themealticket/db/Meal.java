@@ -1,7 +1,9 @@
-package me.themealticket;
+package me.themealticket.db;
 
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import me.themealticket.MTEnt;
 
 public class Meal extends MTEnt {
 	
@@ -9,7 +11,7 @@ public class Meal extends MTEnt {
 	String mealName;
 
 	
-	Dish[] dishes;   //or dishes, or recipes
+	Recipe[] dishes;   //or dishes, or recipes
 
 
 	@Override
