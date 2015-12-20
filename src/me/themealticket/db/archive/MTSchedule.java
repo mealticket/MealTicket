@@ -1,4 +1,7 @@
-package me.themealticket.db;
+package me.themealticket.db.archive;
+
+import me.themealticket.db.Meal;
+import me.themealticket.db.Meal.MealTime;
 
 
 

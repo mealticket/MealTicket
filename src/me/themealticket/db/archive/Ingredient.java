@@ -1,4 +1,4 @@
-package me.themealticket.db;
+package me.themealticket.db.archive;
 
 public class Ingredient {
 

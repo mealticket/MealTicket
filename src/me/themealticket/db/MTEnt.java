@@ -1,11 +1,11 @@
-package me.themealticket;
+package me.themealticket.db;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
 public abstract class MTEnt {
 	
-	Connection con;
+	protected Connection con;
 
 	public abstract void CreateEnt() throws SQLException;
 	
@@ -14,4 +14,5 @@ public abstract class MTEnt {
 	public abstract void UpdateEnt();
 	
 	public abstract void DeleteEnt();
+
 }

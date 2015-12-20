@@ -3,16 +3,23 @@ package me.themealticket.db;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import me.themealticket.MTEnt;
-
 public class Meal extends MTEnt {
 	
 	Long mealID;
+	Long userID;
 	String mealName;
-
+	MealDay mealDay;
+	MealTime mealTime;
 	
-	Recipe[] dishes;   //or dishes, or recipes
+	Dish[] dishes;   //or dishes, or recipes
 
+	public enum MealDay {
+		 MON,TUE,WED,THUR,FRI,SAT,SUN
+		}
+	
+	public enum MealTime{
+		Breakfast,Lunch,Dinner,Snack
+	}
 
 	@Override
 	public void CreateEnt() throws SQLException {

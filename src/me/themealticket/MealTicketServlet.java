@@ -1,5 +1,7 @@
 package me.themealticket;
 
-public class MealTicketServlet {
+import com.netazoic.ent.ServENT;
+
+public class MealTicketServlet extends ServENT{
 
 }
