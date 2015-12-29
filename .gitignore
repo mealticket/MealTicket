@@ -5,3 +5,6 @@ src/me/.DS_Store
 .settings/
 .DS_Store
 log
+.cvsignore
+.tomcatplugin
+WEB-INF/classes
