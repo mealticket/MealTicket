@@ -8,3 +8,7 @@ log
 .cvsignore
 .tomcatplugin
 WEB-INF/classes
+WEB-INF/web.xml
+www/WEB-INF/classes
+www/WEB-INF/web.xml
+_archive

@@ -1,0 +1,35 @@
+<h1>Edamam API Home</h1>
+
+
+<p>
+
+<h2>Query the Edamam Search API</h2>
+<form action="/edamapi/search">
+<input type="hidden" name="apiKey" value="e9741903"/>
+<label for="searchKey">Search for:</label><input type="text" name="searchKey" id="searchKey"/>
+<button value="go" id="btnGoSearch">Go</button>
+</form>
+
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<script type="text/javascript">
+
+$(function(data){
+    $("#btnGoSearch").click(function(evt){
+		goSearch($(this)[0].form);
+    });
+});
+
+var goSearch = function(f){
+    var url = "/edamapi/search";
+    url += "?searchKey=" + f.searchKey.value;
+    var fLoad = function(jqXHR, strStatus){
+		alert(strStatus);
+    }
+    $.ajax(url,{
+		complete:fLoad
+    })
+}
+
+</script>

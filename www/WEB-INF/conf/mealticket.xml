@@ -1,0 +1,13 @@
+	<servlet>
+		<servlet-name>EdamAPI</servlet-name>
+		<servlet-class>me.themealticket.EdamAPI</servlet-class>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EdamAPI</servlet-name>
+		<url-pattern>/edamapi</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EdamAPI</servlet-name>
+		<url-pattern>/edamapi/*</url-pattern>
+	</servlet-mapping>
