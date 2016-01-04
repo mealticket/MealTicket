@@ -4,12 +4,13 @@
 <p>
 
 <h2>Query the Edamam Search API</h2>
-<form action="/edamapi/search">
+<form id="frm-APISearch">
 <input type="hidden" name="apiKey" value="e9741903"/>
 <label for="searchKey">Search for:</label><input type="text" name="searchKey" id="searchKey"/>
 <button value="go" id="btnGoSearch">Go</button>
 </form>
 
+<div id="div-srchResults"></div>
 
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 
@@ -17,18 +18,27 @@
 
 $(function(data){
     $("#btnGoSearch").click(function(evt){
+		evt.preventDefault();
 		goSearch($(this)[0].form);
     });
 });
 
 var goSearch = function(f){
-    var url = "/edamapi/search";
+    var url = "/edamapi/recipe_search";
     url += "?searchKey=" + f.searchKey.value;
+    $("#div-srchResults").html("Please wait . . .");
     var fLoad = function(jqXHR, strStatus){
-		alert(strStatus);
-    }
+		var hits = jqXHR.hits;
+		var json = JSON.stringify(hits,null,"\t");
+		//alert(json);
+		$("#div-srchResults").html(json);
+    };
+    var fErr = function(jqXHR,strStatus,strErr){
+		alert(strErr);
+    };
     $.ajax(url,{
-		complete:fLoad
+		success:fLoad,
+		error:fErr
     })
 }
 
