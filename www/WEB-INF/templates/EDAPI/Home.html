@@ -26,12 +26,25 @@ $(function(data){
 var goSearch = function(f){
     var url = "/edamapi/recipe_search";
     url += "?searchKey=" + f.searchKey.value;
-    $("#div-srchResults").html("Please wait . . .");
+    var div = $("#div-srchResults");
+    div.html("Please wait . . .");
     var fLoad = function(jqXHR, strStatus){
 		var hits = jqXHR.hits;
-		var json = JSON.stringify(hits,null,"\t");
-		//alert(json);
-		$("#div-srchResults").html(json);
+		var hit = null;
+		console.debug(hits);
+		div.html("");
+		if (hits.length==0) div.html("<h4>No results found. Please try again.</h4>");
+		else{
+			div.html("<h4>Found " + hits.length + " recipes</h4>");
+			for(var x =0; x<hits.length;x++){
+				hit = hits[x];
+				div.append("<h1>" + hit.recipeName + "</h1>");
+				div.append("<p><img src=\"" + hit.image + "\">");
+				div.append("<p><a href='" + hit.url +"'>recipe link</a>");
+				div.append("<p>Source: " + hit.source + "  <img src=\"" + hit.sourceIcon + "\">");
+			}
+		}
+
     };
     var fErr = function(jqXHR,strStatus,strErr){
 		alert(strErr);
