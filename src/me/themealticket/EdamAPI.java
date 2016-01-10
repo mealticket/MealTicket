@@ -35,6 +35,8 @@ public class EdamAPI extends ServENT{
 
 	NetRoute homeHdlr = new Home();
 	NetRoute recipeSearchHdlr = new RecipeSearch();
+	private static final String API_BASE_URL = "https://api.edamam.com/";
+
 
 	public enum EDAPI_ROUTE{
 		home,recipe_search
@@ -179,7 +181,6 @@ public class EdamAPI extends ServENT{
 
 	public class RecipeSearch extends RouteEO{
 
-		private static final String API_BASE_URL = "https://api.edamam.com/";
 		private class RecipeSummary{
 			public String recipeName;
 			public String image;
