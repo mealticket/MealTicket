@@ -33,6 +33,7 @@ import com.netazoic.util.JSONUtil;
  */
 public class EdamAPI extends ServENT{
 
+	//What are you storing in homeHdlr of type NetRoute?
 	NetRoute homeHdlr = new Home();
 	NetRoute recipeSearchHdlr = new RecipeSearch();
 	private static final String API_BASE_URL = "https://api.edamam.com/";
@@ -106,9 +107,9 @@ public class EdamAPI extends ServENT{
 		@JsonIgnore
 		public NutrientInfo[]	totalDaily;		//	NutrientInfo[]	% daily value per serving
 		@JsonIgnore
-		public String[]	dietLabels;		//	enum[]	Diet labels: “balanced”, “high-protein”, “high-fiber”, “low-fat”, “low-carb”, “low-sodium”
+		public String[]	dietLabels;		//	enum[]	Diet labels: ï¿½balancedï¿½, ï¿½high-proteinï¿½, ï¿½high-fiberï¿½, ï¿½low-fatï¿½, ï¿½low-carbï¿½, ï¿½low-sodiumï¿½
 		@JsonIgnore
-		public String[]	healthLabels;	//	enum[]	Health labels: “vegan”, “vegetarian”, “paleo”, “dairy-free”, “gluten-free”, “wheat-free”, “fat-free”, “low-sugar”, “egg-free”, “peanut-free”, “tree-nut-free”, “soy-free”, “fish-free”, “shellfish-free”
+		public String[]	healthLabels;	//	enum[]	Health labels: ï¿½veganï¿½, ï¿½vegetarianï¿½, ï¿½paleoï¿½, ï¿½dairy-freeï¿½, ï¿½gluten-freeï¿½, ï¿½wheat-freeï¿½, ï¿½fat-freeï¿½, ï¿½low-sugarï¿½, ï¿½egg-freeï¿½, ï¿½peanut-freeï¿½, ï¿½tree-nut-freeï¿½, ï¿½soy-freeï¿½, ï¿½fish-freeï¿½, ï¿½shellfish-freeï¿½
 
 		//NOT LISTED IN PUBLIC API
 		public String 	sourceIcon;		// url for icon for source site?
@@ -180,7 +181,8 @@ public class EdamAPI extends ServENT{
 	}
 
 	public class RecipeSearch extends RouteEO{
-
+		
+		//Establish a class of strings to store API results
 		private class RecipeSummary{
 			public String recipeName;
 			public String image;
@@ -205,40 +207,45 @@ public class EdamAPI extends ServENT{
 		@Override
 		public void routeAction(HttpServletRequest request,
 				HttpServletResponse response, Connection con, HttpSession session)
-						throws IOException, Exception {
+						throws IOException, Exception {      //What does this mean?
 
 			String charset = java.nio.charset.StandardCharsets.UTF_8.name();
-
+			
+			//API values:
 			String applicationID = "e9741903";
 			String applicationKey  = "244a06ec7b50379730a16ad9c5718d05";
 			String baseURL =  API_BASE_URL;
-			String routeURL = "search";
+			String routeURL = "search";                    //Is this hard coded?
 			String url = baseURL + routeURL;
 			String searchKey = (String) request.getAttribute(EDAPI_Param.searchKey.name());
 			String query = String.format("q=%s&app_id=%s&app_key=%s", 
 					URLEncoder.encode(searchKey,charset),
 					URLEncoder.encode(applicationID, charset), 
 					URLEncoder.encode(applicationKey, charset));
+			//Establishing connection to API?
 			HttpURLConnection connection = 
 					(HttpURLConnection) new URL(url + "?" + query).openConnection();
 			connection.setRequestProperty("Accept-Charset", charset);
-			InputStream remote = connection.getInputStream();
-			String jsonResults = "";
+			InputStream remote = connection.getInputStream();  //???
+			String jsonResults = "";   //lost
+			
+			//What is all this dumpAll business??
 			String dumpAll = (String) request.getAttribute(EDAPI_Param.dumpAll.name());
 			boolean flgDumpAll = false;
 			if(dumpAll!=null) flgDumpAll = Boolean.parseBoolean(dumpAll);
-
+			
+			//back to connection to API?
 			int status = connection.getResponseCode();
-
 			String contentType = connection.getHeaderField("Content-Type");
 
+			//Format "param" to replace commas with what? 
 			for (String param : contentType.replace(" ", "").split(";")) {
 				if (param.startsWith("charset=")) {
 					charset = param.split("=", 2)[1];
 					break;
 				}
 			}
-
+			//What??? lost again..
 			if (charset != null) {
 				try (BufferedReader reader = new BufferedReader(new InputStreamReader(remote, charset))) {
 					for (String line; (line = reader.readLine()) != null;) {
