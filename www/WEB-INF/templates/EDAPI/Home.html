@@ -1,59 +1,72 @@
-<link rel="stylesheet" href="/css/home.css">
-<h1>Edamam API Home</h1>
-
-
-<p>
-
-<h2>Query the Edamam Search API</h2>
-<form id="frm-APISearch">
-<input type="hidden" name="apiKey" value="e9741903"/>
-<label for="searchKey">Search for:</label><input type="text" name="searchKey" id="searchKey"/>
-<button value="go" id="btnGoSearch">Go</button>
-</form>
-
-<div id="div-srchResults"></div>
-
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-
-<script type="text/javascript">
-
-$(function(data){
-    $("#btnGoSearch").click(function(evt){
-		evt.preventDefault();
-		goSearch($(this)[0].form);
-    });
-});
-
-var goSearch = function(f){
-    var url = "/edamapi/recipe_search";
-    url += "?searchKey=" + f.searchKey.value;
-    var div = $("#div-srchResults");
-    div.html("Please wait . . .");
-    var fLoad = function(jqXHR, strStatus){
-		var hits = jqXHR.hits;
-		var hit = null;
-		console.debug(hits);
-		div.html("");
-		if (hits.length==0) div.html("<h4>No results found. Please try again.</h4>");
-		else{
-			div.html("<h4>Found " + hits.length + " recipes</h4>");
-			for(var x =0; x<hits.length;x++){
-				hit = hits[x];
-				div.append("<h1>" + hit.recipeName + "</h1>");
-				div.append("<p><img src=\"" + hit.image + "\">");
-				div.append("<p><a href='" + hit.url +"'>recipe link</a>");
-				div.append("<p>Source: " + hit.source + "  <img src=\"" + hit.sourceIcon + "\">");
-			}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>MealTicket &middot; Home</title>
+        <meta name="description" content="Home of the MealTicket">
+        <link rel="stylesheet" href="/css/home.css">
+    </head>
+	<body>
+		
+		<link rel="stylesheet" href="/css/home.css">
+		<h1>Edamam API Home</h1>
+		
+		
+		<p>
+		
+		<h2>Query the Edamam Search API</h2>
+		<form id="frm-APISearch">
+		<input type="hidden" name="apiKey" value="e9741903"/>
+		<label for="searchKey">Search for:</label><input type="text" name="searchKey" id="searchKey"/>
+		<button value="go" id="btnGoSearch">Go</button>
+		</form>
+		
+		<div id="div-srchResults"></div>
+		
+		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+		
+		<script type="text/javascript">
+		
+		$(function(data){
+		    $("#btnGoSearch").click(function(evt){
+				evt.preventDefault();
+				goSearch($(this)[0].form);
+		    });
+		});
+		
+		var goSearch = function(f){
+		    var url = "/edamapi/recipe_search";
+		    url += "?searchKey=" + f.searchKey.value;
+		    var div = $("#div-srchResults");
+		    div.html("Please wait . . .");
+		    var fLoad = function(jqXHR, strStatus){
+				var hits = jqXHR.hits;
+				var hit = null;
+				console.debug(hits);
+				div.html("");
+				if (hits.length==0) div.html("<h4>No results found. Please try again.</h4>");
+				else{
+					div.html("<h4>Found " + hits.length + " recipes</h4>");
+					for(var x =0; x<hits.length;x++){
+						hit = hits[x];
+						div.append("<h1>" + hit.recipeName + "</h1>");
+						div.append("<p><img src=\"" + hit.image + "\">");
+						div.append("<p><a href='" + hit.url +"'>recipe link</a>");
+						div.append("<p>Source: " + hit.source + "  <img src=\"" + hit.sourceIcon + "\">");
+					}
+				}
+		
+		    };
+		    var fErr = function(jqXHR,strStatus,strErr){
+				alert(strErr);
+		    };
+		    $.ajax(url,{
+				success:fLoad,
+				error:fErr
+		    })
 		}
-
-    };
-    var fErr = function(jqXHR,strStatus,strErr){
-		alert(strErr);
-    };
-    $.ajax(url,{
-		success:fLoad,
-		error:fErr
-    })
-}
-
-</script>
+		
+		</script>
+	</body>
+</html>
